@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "3d97f176-15dc-4938-b243-4a3ce0fd9823",
+		"name": "TODO APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26372308"
+	},
+	"item": [
+		{
+			"name": "ADD TASK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\":\"my first task\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/api/v1/todo/",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALL TASKS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\":\"my first task\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/api/v1/todo",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE TASK",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\":\"my first task new\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/api/v1/todo/64e2619149176d632c0be97e",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todo",
+						"64e2619149176d632c0be97e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE TASK",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\":\"my first task new\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API}}/api/v1/todo/64e2674258301690ac59abcd",
+					"host": [
+						"{{API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todo",
+						"64e2674258301690ac59abcd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
