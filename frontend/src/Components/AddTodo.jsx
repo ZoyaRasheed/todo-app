@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Addtodo.css'
 
 function AddTodo() {
   const [todos, setTodos] = useState([]);
@@ -34,9 +35,10 @@ function AddTodo() {
         placeholder='Add Todo'
         value={newTodo}
         onChange={handleInputChange}
+        className='inputStyle'
       />
-      <button onClick={handleAddTodo}>Add Todo</button>
-      <ul>
+      <button onClick={handleAddTodo} className='buttonStyle'>Add Todo</button>
+      <ul className='listStyle'>
         {todos.map((todo) => (
           <li key={todo._id}>{todo.task}</li>
         ))}
