@@ -16,9 +16,6 @@ function AddTodo() {
     setFilteredTodos(filtered);
   }, [searchTodo, todos]);
 
-  function handleInputChange(e) {
-    setNewTodo(e.target.value);
-  }
 
   const handleAddTodo = () => {
     if (newTodo !== "") {
@@ -37,13 +34,28 @@ function AddTodo() {
     }
   };
 
+  const handleDeleteTodo = (todoId) =>{
+    axios.delete(`http://localhost:5000/api/v1/todo/${todoId}`)
+    .then((res) => {
+      if (res.data.success) {
+        const updatedTodos = todos.filter((todo) => todo._id !== todoId);
+        setTodos(updatedTodos);
+      } else {
+        console.error(res.data.message);
+      }
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+  }
+
   return (
     <div>
       <input
         type="text"
         placeholder='Add Todo'
         value={newTodo}
-        onChange={handleInputChange}
+        onChange={(e)=> setNewTodo(e.target.value)}
         className='inputStyle'
       />
       <button onClick={handleAddTodo} className='buttonStyle'>Add Todo</button><br />
@@ -53,10 +65,20 @@ function AddTodo() {
         value={searchTodo}
         onChange={(e) => setSearchTodo(e.target.value)}
         className="inputStyle" 
+      
       />
-      <ul className="listStyle">
+       <button  className='buttonStyle'>Search</button><br />
+       <ul className="listStyle">
         {filteredTodos.map((todo) => (
-          <li key={todo._id}>{todo.task}</li>
+          <li key={todo._id}>
+            {todo.task}
+            <button
+              onClick={() => handleDeleteTodo(todo._id)}
+              className="deleteButton"
+            >
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
     </div>
