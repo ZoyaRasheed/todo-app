@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import './Addtodo.css'
 
 function AddTodo() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState(''); 
+  const [searchTodo, setSearchTodo] = useState('');
+  const [filteredTodos, setFilteredTodos] = useState([]);
 
+
+  useEffect(() => {
+    const filtered = todos.filter((todo) =>
+      todo.task.toLowerCase().includes(searchTodo.toLowerCase())
+    );
+    setFilteredTodos(filtered);
+  }, [searchTodo, todos]);
 
   function handleInputChange(e) {
     setNewTodo(e.target.value);
@@ -37,9 +46,16 @@ function AddTodo() {
         onChange={handleInputChange}
         className='inputStyle'
       />
-      <button onClick={handleAddTodo} className='buttonStyle'>Add Todo</button>
-      <ul className='listStyle'>
-        {todos.map((todo) => (
+      <button onClick={handleAddTodo} className='buttonStyle'>Add Todo</button><br />
+      <input
+        type="text"
+        placeholder="Search Todo"
+        value={searchTodo}
+        onChange={(e) => setSearchTodo(e.target.value)}
+        className="inputStyle" 
+      />
+      <ul className="listStyle">
+        {filteredTodos.map((todo) => (
           <li key={todo._id}>{todo.task}</li>
         ))}
       </ul>
